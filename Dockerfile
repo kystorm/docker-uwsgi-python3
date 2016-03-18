@@ -28,9 +28,6 @@ COPY ./app /var/app
 RUN pip3 install -r /var/app/requirements.txt
 
 
-# configure your uwgis's config to .conf
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 # copy again when onbuild
 ONBUILD RUN rm -r /var/app
 ONBUILD COPY ./app /var/app
