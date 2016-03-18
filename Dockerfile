@@ -6,26 +6,29 @@
 FROM ubuntu:14.04.4
 MAINTAINER ky.storm <ky.storm@163.com>
 
-RUN apt-get update
-RUN apt-get upgrade -y
+RUN apt-get update && \
+    apt-get upgrade -y
 
 # python 3.4 has already installed by os
 RUN apt-get install -y \
             python3-pip
 
 # clean apt-get
-RUN apt-get autoclean
-RUN apt-get clean
-RUN apt-get autoremove
+RUN apt-get autoclean && \
+    apt-get clean && \
+    apt-get autoremove
+
+# update pip
+RUN pip3 install -U pip setuptools
 
 # install uwsgi
 RUN pip3 install uwsgi
-RUN pip3 install -U pip setuptools
+
+# map your app to /var/app directly
+VOLUME /var/app
 
 # DEMO app here
-# map your app to /var/app directly
 COPY ./app /var/app
-
 
 # install requirements, no need to use venv in docker
 RUN pip3 install -r /var/app/requirements.txt
