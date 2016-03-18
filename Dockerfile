@@ -23,16 +23,13 @@ RUN pip3 install uwsgi
 RUN pip3 install -U pip setuptools
 
 # DEMO app here
+# map your app to /var/app directly
 COPY ./app /var/app
+
+
 # install requirements, no need to use venv in docker
 RUN pip3 install -r /var/app/requirements.txt
 
-
-# copy again when onbuild
-ONBUILD RUN rm -r /var/app
-ONBUILD COPY ./app /var/app
-# install requirements
-ONBUILD RUN pip3 install -r /var/app/requirements.txt
 
 # expose ports
 EXPOSE 8080
