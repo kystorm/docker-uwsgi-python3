@@ -14,9 +14,9 @@ RUN apt-get install -y \
             python3-pip
 
 # clean apt-get
-#RUN apt-get autoclean
+RUN apt-get autoclean
 RUN apt-get clean
-#RUN apt-get autoremove
+RUN apt-get autoremove
 
 # install uwsgi
 RUN pip3 install uwsgi
