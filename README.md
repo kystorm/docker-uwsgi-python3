@@ -1,1 +1,1 @@
-# docker-uwsgi-python3
+# docker-uwsgi-python
